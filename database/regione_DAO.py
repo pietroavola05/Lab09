@@ -16,8 +16,9 @@ class RegioneDAO:
             print("❌ Errore di connessione al database.")
             return None
 
-        cursor = cnx.cursor(dictionary=True)
-        query = """ ADD YOUR QUERY """ # TODO
+        cursor = cnx.cursor(dictionary=True) #faccio la query per prendere tutte le regioni
+        query = """ select * 
+                    from regione r  """
         try:
             cursor.execute(query)
             for row in cursor:

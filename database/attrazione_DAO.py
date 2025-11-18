@@ -16,8 +16,9 @@ class AttrazioneDAO:
             print("❌ Errore di connessione al database.")
             return None
 
-        cursor = cnx.cursor(dictionary=True)
-        query = """ ADD YOUR QUERY """ # TODO
+        cursor = cnx.cursor(dictionary=True) #scrivo la query per prendere tutte le attrazioni
+        query = """ select *  
+                    from attrazione a """
         try:
             cursor.execute(query)
             for row in cursor:

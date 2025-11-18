@@ -15,8 +15,9 @@ class TourDAO:
             print("❌ Errore di connessione al database.")
             return None
 
-        cursor = cnx.cursor(dictionary=True)
-        query = """ ADD YOUR QUERY """ # TODO
+        cursor = cnx.cursor(dictionary=True) #faccio la query per prendere tutti i tour
+        query = """ select *       
+                    from tour t  """
         try:
             cursor.execute(query)
             for row in cursor:
@@ -38,7 +39,7 @@ class TourDAO:
         return result
 
     @staticmethod
-    def get_tour_attrazioni() -> list | None:
+    def get_tour_attrazioni():
         """
         Restituisce tutte le relazioni
         :return: una lista di dizionari [{"id_tour": ..., "id_attrazione": ...}]
@@ -49,8 +50,9 @@ class TourDAO:
             print("❌ Errore di connessione al database.")
             return None
 
-        cursor = cnx.cursor(dictionary=True)
-        query = """ ADD YOUR QUERY """ # TODO
+        cursor = cnx.cursor(dictionary=True) #sto selezionando id dei tour e id attrazione se la regione è quella che viene indicata
+        query = """ SELECT *
+                    FROM tour_attrazione"""
         try:
             cursor.execute(query)
             for row in cursor:
