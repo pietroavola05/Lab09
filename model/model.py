@@ -78,9 +78,6 @@ class Model:
                     valore_corrente: int, attrazioni_usate: set,
                     max_giorni: int, max_budget: float):
 
-        # 🟢 CORREZIONE: Aggiorna il valore ottimo all'inizio di OGNI chiamata.
-        # Questo garantisce che ogni pacchetto parziale valido (anche se non esteso
-        # fino all'esaurimento dei tour) venga considerato come un potenziale ottimo.
         if valore_corrente > self._valore_ottimo:
             self._valore_ottimo = valore_corrente
             self._pacchetto_ottimo = pacchetto_parziale.copy()
@@ -90,7 +87,7 @@ class Model:
         if len(tour_disponibili) == 0:
             return
 
-        #
+        #considero tutti i tour
         for tour in tour_disponibili:
             nuova_durata = durata_corrente + tour.durata_giorni
             nuovo_costo = costo_corrente + tour.costo
@@ -110,7 +107,6 @@ class Model:
             # nuovi tour rimanenti (deepcopy)
             nuovi_tour = tour_disponibili.copy()
             nuovi_tour.remove(tour)
-
             # ricorsione
             self._ricorsione(
                 nuovi_tour,
